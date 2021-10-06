@@ -12,7 +12,7 @@ function getErrorsDiv() {
 
 const messageRenderer = {
 
-    showMessageAsAlert: function (message, bootClass) {
+    showMessageAsAlert: function (message, bootClass, err) {
         let html = `<div class="alert alert-${bootClass} alert-dismissible col-md-12">
                         <button type="button" class="close" data-dismiss="alert">&times;</button>
                         ${message}
@@ -28,18 +28,23 @@ const messageRenderer = {
 
         let messageElem = parseHTML(html);
         errorsDiv.appendChild(messageElem);
+
+        if(err != null){
+            throw(err);
+            // console.error(err)
+        }
     },
 
-    showErrorMessage: function (message) {
-        this.showMessageAsAlert(message, "danger");
+    showErrorAsAlert: function (message, err = null) {
+        this.showMessageAsAlert(message, "danger", err);
     },
 
-    showWarningMessage: function (message) {
-        this.showMessageAsAlert(message, "warning");
+    showWarningAsAlert: function (message, err = null) {
+        this.showMessageAsAlert(message, "warning", err);
     },
 
-    showSuccessMessage: function (message) {
-        this.showMessageAsAlert(message, "success");
+    showSuccessAsAlert: function (message, err = null) {
+        this.showMessageAsAlert(message, "success", err);
     },
 }
 
