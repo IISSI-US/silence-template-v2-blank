@@ -9,9 +9,9 @@ DEBUG_ENABLED = False
 DB_CONN = {
     "host": "127.0.0.1",
     "port": 3306,
-    "username": "silence",
-    "password": "123456",
-    "database": "example_project",
+    "username": "iissi_user",
+    "password": "iissi$user",
+    "database": "my_database",
 }
 
 # The sequence of SQL scripts located in the sql/ folder that must
@@ -34,7 +34,3 @@ API_PREFIX = "/api/v1"
 #    "identifier": "email",
 #    "password": "password",
 #}
-
-# A random string that is used for security purposes
-# (this has been generated automatically upon project creation)
-SECRET_KEY = "SMqD5Yq2Z_U3mJyak_wq_ZB-GpJjkapg5INWIWgX0iM"
