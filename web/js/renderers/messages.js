@@ -1,20 +1,18 @@
-"use strict";
+'use strict';
 
-import { parseHTML } from "/js/utils/parseHTML.js";
+import { parseHTML } from '../utils/parseHTML.js';
 
 // Aux function to get the div in which to display messages
 // It's centralized here so we can change it easily in the case its ID changes
-const msgsDivID = "errors";
-
 function getErrorsDiv() {
-    return document.getElementById(msgsDivID);
+    return document.getElementById("errors");
 }
 
 const messageRenderer = {
 
     showMessageAsAlert: function (message, bootClass, err) {
-        let html = `<div class="alert alert-${bootClass} alert-dismissible col-md-12">
-                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        let html = `<div class="alert alert-${bootClass} alert-dismissible col-md-12 fade show">
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         ${message}
                     </div>`;
         let errorsDiv = getErrorsDiv();
@@ -29,21 +27,20 @@ const messageRenderer = {
         let messageElem = parseHTML(html);
         errorsDiv.appendChild(messageElem);
 
-        if(err != null){
-            throw(err);
-            // console.error(err)
+        if (err != null) {
+            throw (err);
         }
     },
 
-    showErrorAsAlert: function (message, err = null) {
+    showErrorMessage: function (message, err = null) {
         this.showMessageAsAlert(message, "danger", err);
     },
 
-    showWarningAsAlert: function (message, err = null) {
+    showWarningMessage: function (message, err = null) {
         this.showMessageAsAlert(message, "warning", err);
     },
 
-    showSuccessAsAlert: function (message, err = null) {
+    showSuccessMessage: function (message, err = null) {
         this.showMessageAsAlert(message, "success", err);
     },
 }
